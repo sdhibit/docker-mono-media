@@ -8,23 +8,25 @@ ARG MEDIAINFO_URL="https://mediaarea.net/download/binary/mediainfo/${MEDIAINFO_V
 #Build libmediainfo
 # install build packages
 RUN apk add --no-cache --virtual=build-dependencies \
-        autoconf \
-        automake \
-        file \
-        gcc \
-        git \
-        make \
-        build-base \
-        curl-dev \
+    make \
+    g++ \ 
+    gcc \
+    git \
+    sqlite \ 
+    sqlite-libs \
+    xz \
+    unrar \
+    zlib \
+    zlib-dev \
  && mkdir -p /tmp/libmediainfo \
  && mkdir -p /tmp/mediainfo \
  && curl -kL ${LIBMEDIAINFO_URL} | tar -xz -C /tmp/libmediainfo --strip-components=1 \
  && curl -kL ${MEDIAINFO_URL} | tar -xz -C /tmp/mediainfo --strip-components=1 \
  && cd /tmp/libmediainfo \
  && ./SO_Compile.sh \
- && cd /tmp/libmediainfo/ZenLib/Project/GNU/Library \
- && make install \
  && cd /tmp/libmediainfo/MediaInfoLib/Project/GNU/Library \
+ && make install \
+ && cd /tmp/libmediainfo/ZenLib/Project/GNU/Library \
  && make install \
  && cd /tmp/mediainfo \
  && ./CLI_Compile.sh \
