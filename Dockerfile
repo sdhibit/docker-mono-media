@@ -1,4 +1,4 @@
-FROM sdhibit/mono:5.4
+FROM sdhibit/mono:5.0
 MAINTAINER Steve Hibit <sdhibit@gmail.com>
 
 ARG MEDIAINFO_VER="0.7.97"
